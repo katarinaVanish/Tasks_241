@@ -59,3 +59,6 @@ else
 fi
 ```
 
+Вывод:
+
+![image25.png](images/image25.png)

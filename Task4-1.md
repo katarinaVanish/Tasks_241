@@ -29,20 +29,33 @@ mkdir -p /home/karina/test3/test2/test1
 cd /home/karina/test3/test2
 touch filek
 echo -e "Hello world\nWorld hello\naboba" >> filek
+
 mv filek test1/filek
 cp test1/filek ../filek
 cd ../
 mv filek newFilek
+
 echo "файлы " $(realpath newfilek)  "и" $(realpath test2/test1/filek) 
-diff -q newFilek test2/test1/filek && echo "идентичны" || echo "различны"
+if diff -q newFilek test2/test1/filek; then
+    echo "идентичны"
+else
+    echo "различны"
+fi
+
 sort newFilek -o sortFilek
 sort -r newFilek -o rSortFilek
+
 echo "Отсортированный файл:"
 cat sortFilek
 echo "Отсортированный в обратном порядке:"
 cat rSortFilek
+
 cd /home/karina
-rm -fr test3
-echo "Все папки и файлы успешно удалены"
+if rm -rf test3; then
+    echo "Все папки и файлы успешно удалены"
+else
+    echo "Ошибка при удалении папок и файлов" >&2
+    exit 1
+fi
 ```
 

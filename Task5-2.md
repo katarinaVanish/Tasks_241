@@ -37,8 +37,8 @@ done
 Description=Run script5 on startup
 
 [Service]
-Type=oneshot
-ExecStart=/home/karina/script5.sh
+Type=simple
+ExecStart=/usr/local/bin/script5.sh
 RemainAfterExit=yes
 
 [Install]
@@ -48,14 +48,14 @@ WantedBy=multi-user.target
 ![image28.png](images/image28.png)
 
 ### Создайте таймер который будет вызывать выполнение одноимённого systemd юнита каждые 5 минут.
-чета не рабоает...
 ```
 [Unit]
-Description=Run script5 every 5 min
+Description=Run myscript.service every 5 min
 
 [Timer]
 OnBootSec=0
 OnUnitActiveSec=5min
+Persistent=true
 Unit=myscript.service
 
 [Install]

@@ -37,7 +37,7 @@ done
 Description=Run script5 on startup
 
 [Service]
-Type=simple
+Type=oneshot
 ExecStart=/usr/local/bin/script5.sh
 RemainAfterExit=yes
 
@@ -61,6 +61,7 @@ Unit=myscript.service
 [Install]
 WantedBy=timers.target
 ```
+Заменить в myscript.service Type=oneshot на simple
 
 ### От какого пользователя вызыаются юниты поумолчанию?
 От рута
@@ -69,4 +70,7 @@ WantedBy=timers.target
 ```
 adduser file_creator
 ```
-В myscript.service в поле [Service] добавляем запись `User=file_creator`
+В myscript.service в поле [Service] добавить запись `User=file_creator`
+
+### Дополните ваш скрипт так, что бы он независимо от местоположения всега выполнялся в домашней папке того кто его вызывает
+Изменить переменную `DIRECTORY="$(echo $HOME)/folder"`

@@ -14,8 +14,14 @@ sshd.service
 ### Отредактируйте файл настроек на сервере так, чтобы была возможность подключиться к серверу используя пользователя root
 Добавить строчку `PermitRootLogin yes`
 
+Раскомментировать строчку `PubkeyAuthentication yes` и после нее еще две длинные `PubkeyAcceptedKeyTypes <...>` и `AuthorizedKeysFile <...>`
+
+Предварительно сгенерировать ssh ключ в своей локальной учетке командой `ssh-keygen -t rsa`, скопировать его и вставить на сервере в файл /root/.ssh/authorized_keys
+
+![image31.png](images/image31.png)
+
 ### Измените колличество ошибок ввода пароля перед сборосом соединения, покажите эти измененения
-Добавляем в файл строчку `MaxAuthTries 2`
+Добавить в файл /etc/openssh/sshd_config строчку `MaxAuthTries 2`
 
 MaxAuthTries Указывает максимальное количество попыток аутентификации. По умолчанию - 3
 
@@ -26,3 +32,8 @@ MaxAuthTries Указывает максимальное количество п
 ![image30.png](images/image30.png)
 
 ### Ограничте ему возможность подключения к серверу
+Добавить в файл строчку `DenyUsers ssh-user`
+
+или выполнить:
+
+`sudo usermod -s /usr/sbin/nologin ssh_user`

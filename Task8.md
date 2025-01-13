@@ -87,4 +87,6 @@ sudo chmod 770 /srv/samba/mixed_access
   writable = no
 ```
 
-!(images/image35.png)[image35.png]
+![image33.png](images/image33.png)
+![image34.png](images/image34.png)
+![image35.png](images/image35.png)
